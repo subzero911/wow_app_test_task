@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:wow_app_test_task/utils/appcolors.dart';
 
 void main() {
   runApp(MyApp());
@@ -7,14 +9,20 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+    return GetMaterialApp(
+      title: 'Wow App',
       theme: ThemeData(
-
-        primarySwatch: Colors.blue,
+        colorScheme: ColorScheme.light().copyWith(
+          primary: AppColors.darkOrange,
+          primaryVariant: AppColors.lightOrange,
+        ),
+        textTheme: TextTheme(
+          headline1: TextStyle(fontWeight: FontWeight.w500, fontSize: 20, color: AppColors.mainText),
+          bodyText1: TextStyle(fontWeight: FontWeight.w400, fontSize: 14, color: AppColors.lightText),
+          caption: TextStyle(fontWeight: FontWeight.w400, fontSize: 12, color: AppColors.mainText),
+        ),
       ),
       // home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
-
