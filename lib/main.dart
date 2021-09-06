@@ -11,11 +11,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Wow App',
       theme: ThemeData(
-        colorScheme: ColorScheme.light().copyWith(          
+        colorScheme: ColorScheme.light().copyWith(
           primary: AppColors.darkOrange,
-          primaryVariant: AppColors.lightOrange,          
+          primaryVariant: AppColors.lightOrange,
         ),
         textTheme: TextTheme(
           headline1: TextStyle(fontWeight: FontWeight.w500, fontSize: 20, color: AppColors.mainText),
@@ -23,7 +24,25 @@ class MyApp extends StatelessWidget {
           caption: TextStyle(fontWeight: FontWeight.w400, fontSize: 12, color: AppColors.mainText),
         ),
       ),
-      home: RegistrationScreen(),
+      initialRoute: '/reg',
+      getPages: [
+        GetPage(
+          name: '/reg',
+          page: () => RegistrationScreen(),
+          children: [
+            GetPage(
+              name: '/reg/sms',
+              page: () => Container(),
+              children: [
+                GetPage(
+                  name: '/reg/name',
+                  page: () => Container(),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ],
     );
   }
 }
