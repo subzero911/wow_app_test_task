@@ -7,22 +7,34 @@ import 'widgets/header.dart';
 import 'widgets/info.dart';
 import 'widgets/input.dart';
 
-class SmsScreen extends StatelessWidget {
+class SmsScreen extends StatefulWidget {
   const SmsScreen({Key? key}) : super(key: key);
+
+  @override
+  _SmsScreenState createState() => _SmsScreenState();
+}
+
+class _SmsScreenState extends State<SmsScreen> {
+  final _controller = TextEditingController();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     final phone = Get.parameters['phone'];
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text('SMS Screen'),
+      appBar: AppBar(        
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
-          onPressed: () {},
+          onPressed: () => Get.back(),
           color: AppColors.inactive,
         ),
         actions: [
@@ -38,35 +50,29 @@ class SmsScreen extends StatelessWidget {
             ),
             const SizedBox(height: 36),
             Input(
-              content: Row(
-                children: [
-                  Text('RU', style: Theme.of(context).textTheme.bodyText1?.copyWith(color: Colors.black)),
-                  const SizedBox(width: 8),
-                  Image.asset('assets/images/ru_flag.png'),
-                  const SizedBox(width: 18),
-                  Flexible(
-                    child: TextFormField(
-                      keyboardType: TextInputType.phone,
-                      decoration: InputDecoration(
-                        hintText: '+7 (___) ___ __ __',
-                        border: InputBorder.none,
-                      ),
-                      inputFormatters: [
-                        PhoneInputFormatter(),
-                      ],
-                    ),
-                  ),
-                ],
+              content: TextFormField(
+                controller: _controller,
+                onChanged: (val) {
+                  setState(() {});
+                },
+                keyboardType: TextInputType.phone,
+                decoration: InputDecoration(
+                  hintText: '__ __ __ __',
+                  hintStyle: Theme.of(context).textTheme.bodyText1,
+                  border: InputBorder.none,
+                  counter: const SizedBox.shrink(),
+                ),
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, letterSpacing: 2.0),
+                maxLength: 4,
               ),
             ),
             Spacer(),
             GradientButton(
               text: 'Получить код',
               onPressed: () {},
-              enabled: true,
+              enabled: _controller.text.isNotEmpty,
             ),
-            const SizedBox(height: 24),
-            Info(),
+            const SizedBox(height: 24),            
           ],
         ),
       ),

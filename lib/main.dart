@@ -34,6 +34,7 @@ class MyApp extends StatelessWidget {
             GetPage(
               name: '/sms',
               page: () => SmsScreen(),
+              transition: Transition.cupertino,
             ),
             GetPage(
               name: '/name',

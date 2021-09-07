@@ -25,10 +25,9 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Reg screen'),
-        // backgroundColor: Colors.transparent,
-        // shadowColor: Colors.transparent,
+      appBar: AppBar(        
+        backgroundColor: Colors.transparent,
+        shadowColor: Colors.transparent,
         actions: [
           Image.asset('assets/images/info.png'),
         ],
@@ -50,7 +49,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   const SizedBox(width: 18),
                   Flexible(
                     child: TextFormField(
-                      controller: _controller,                                            
+                      controller: _controller,
+                      onChanged: (val) {
+                        setState(() {});
+                      },
                       keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                         hintText: '+7 (___) ___ __ __',
