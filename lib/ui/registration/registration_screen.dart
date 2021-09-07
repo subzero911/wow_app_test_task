@@ -15,6 +15,7 @@ class RegistrationScreen extends StatefulWidget {
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
   final _controller = TextEditingController();
+  String _previousText = '';
 
   @override
   void dispose() {
@@ -25,7 +26,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(        
+      appBar: AppBar(
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
         actions: [
@@ -51,7 +52,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     child: TextFormField(
                       controller: _controller,
                       onChanged: (val) {
-                        setState(() {});
+                        // optimization: rebuild only if changed from 'empty' to 'not empty' and vice versa
+                        if (val.isNotEmpty && _previousText.isEmpty || val.isEmpty && _previousText.isNotEmpty)
+                          setState(() {});
+                        _previousText = val;
                       },
                       keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
