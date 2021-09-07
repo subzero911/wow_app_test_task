@@ -3,8 +3,10 @@ import '../../../utils/appcolors.dart';
 
 class GradientButton extends StatelessWidget {
   final String text;
+  final VoidCallback? onPressed;
 
   const GradientButton({
+    required this.onPressed,
     required this.text,
     Key? key,
   }) : super(key: key);
@@ -19,7 +21,7 @@ class GradientButton extends StatelessWidget {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
           elevation: 0,
         ),
-        onPressed: () {},        
+        onPressed: onPressed,
         child: Ink(
           decoration: BoxDecoration(
             gradient: AppColors.orangeGradient,

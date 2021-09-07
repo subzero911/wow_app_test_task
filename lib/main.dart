@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wow_app_test_task/ui/registration/registration_screen.dart';
+import 'package:wow_app_test_task/ui/registration/sms_screen.dart';
 import 'package:wow_app_test_task/utils/appcolors.dart';
 
 void main() {
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
           children: [
             GetPage(
               name: '/reg/sms',
-              page: () => Container(),
+              page: () => SmsScreen(),
               children: [
                 GetPage(
                   name: '/reg/name',

@@ -6,27 +6,16 @@ import 'widgets/header.dart';
 import 'widgets/info.dart';
 import 'widgets/input.dart';
 
-class RegistrationScreen extends StatefulWidget {
-  const RegistrationScreen({Key? key}) : super(key: key);
-
-  @override
-  _RegistrationScreenState createState() => _RegistrationScreenState();
-}
-
-class _RegistrationScreenState extends State<RegistrationScreen> {
-  final _controller = TextEditingController();
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+class SmsScreen extends StatelessWidget {
+  const SmsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final phone = Get.parameters['phone'];
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Reg screen'),
+        title: Text('SMS Screen'),
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
         actions: [
@@ -37,8 +26,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
         child: Column(
           children: [
             Header(
-              title: 'Введите номер телефона',
-              subtitle: 'Для использования приложения пройдите авторизацию по номеру телефона',
+              title: 'Введите код из СМС',
+              subtitle: 'На номер $phone отправлено СМС с проверочным кодом, введите его',
             ),
             const SizedBox(height: 36),
             Input(
@@ -50,7 +39,6 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   const SizedBox(width: 18),
                   Flexible(
                     child: TextFormField(
-                      controller: _controller,                                            
                       keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                         hintText: '+7 (___) ___ __ __',
@@ -65,10 +53,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ),
             ),
             Spacer(),
-            GradientButton(
-              text: 'Получить код',
-              onPressed: () => Get.toNamed('/reg/sms?phone=${_controller.text}'),
-            ),
+            GradientButton(text: 'Получить код', onPressed: () {}),
             const SizedBox(height: 24),
             Info(),
           ],
