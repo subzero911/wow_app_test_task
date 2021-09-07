@@ -3,11 +3,13 @@ import '../../../utils/appcolors.dart';
 
 class GradientButton extends StatelessWidget {
   final String text;
-  final VoidCallback? onPressed;
+  final VoidCallback onPressed;
+  final bool enabled;
 
   const GradientButton({
     required this.onPressed,
     required this.text,
+    this.enabled = true,
     Key? key,
   }) : super(key: key);
 
@@ -23,10 +25,15 @@ class GradientButton extends StatelessWidget {
         ),
         onPressed: onPressed,
         child: Ink(
-          decoration: BoxDecoration(
-            gradient: AppColors.orangeGradient,
-            borderRadius: BorderRadius.circular(20),
-          ),
+          decoration: enabled
+              ? BoxDecoration(
+                  gradient: AppColors.orangeGradient,
+                  borderRadius: BorderRadius.circular(20),
+                )
+              : BoxDecoration(
+                  color: AppColors.inactive,
+                  borderRadius: BorderRadius.circular(20),
+                ),
           child: Container(
             width: double.infinity,
             height: 44,

@@ -27,8 +27,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Reg screen'),
-        backgroundColor: Colors.transparent,
-        shadowColor: Colors.transparent,
+        // backgroundColor: Colors.transparent,
+        // shadowColor: Colors.transparent,
         actions: [
           Image.asset('assets/images/info.png'),
         ],
@@ -68,6 +68,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             GradientButton(
               text: 'Получить код',
               onPressed: () => Get.toNamed('/reg/sms?phone=${_controller.text}'),
+              enabled: _controller.text.isNotEmpty,
             ),
             const SizedBox(height: 24),
             Info(),

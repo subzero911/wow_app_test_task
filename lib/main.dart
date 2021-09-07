@@ -32,14 +32,12 @@ class MyApp extends StatelessWidget {
           page: () => RegistrationScreen(),
           children: [
             GetPage(
-              name: '/reg/sms',
+              name: '/sms',
               page: () => SmsScreen(),
-              children: [
-                GetPage(
-                  name: '/reg/name',
-                  page: () => Container(),
-                ),
-              ],
+            ),
+            GetPage(
+              name: '/name',
+              page: () => Container(),
             ),
           ],
         ),

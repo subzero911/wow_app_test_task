@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart' hide Title;
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:get/get.dart';
+import 'package:wow_app_test_task/utils/appcolors.dart';
 import 'widgets/gradient_button.dart';
 import 'widgets/header.dart';
 import 'widgets/info.dart';
@@ -16,8 +17,14 @@ class SmsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('SMS Screen'),
+        automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          onPressed: () {},
+          color: AppColors.inactive,
+        ),
         actions: [
           Image.asset('assets/images/info.png'),
         ],
@@ -53,7 +60,11 @@ class SmsScreen extends StatelessWidget {
               ),
             ),
             Spacer(),
-            GradientButton(text: 'Получить код', onPressed: () {}),
+            GradientButton(
+              text: 'Получить код',
+              onPressed: () {},
+              enabled: true,
+            ),
             const SizedBox(height: 24),
             Info(),
           ],
