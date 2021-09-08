@@ -5,7 +5,7 @@ import 'package:wow_app_test_task/controllers/auth_controller.dart';
 import 'package:wow_app_test_task/ui/registration/validators/reg_validator.dart';
 import 'widgets/gradient_button.dart';
 import 'widgets/header.dart';
-import 'widgets/info.dart';
+import 'widgets/infobox.dart';
 import 'widgets/input.dart';
 
 class RegistrationScreen extends GetView<AuthController> {
@@ -26,7 +26,7 @@ class RegistrationScreen extends GetView<AuthController> {
       body: SafeArea(
         child: Column(
           children: [
-            Header(
+            const Header(
               title: 'Введите номер телефона',
               subtitle: 'Для использования приложения пройдите авторизацию по номеру телефона',
             ),
@@ -44,7 +44,7 @@ class RegistrationScreen extends GetView<AuthController> {
                       controller: validator.controller,
                       onChanged: validator.updateText,
                       keyboardType: TextInputType.phone,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         hintText: '+7 (___) ___ __ __',
                         border: InputBorder.none,
                       ),
@@ -56,7 +56,7 @@ class RegistrationScreen extends GetView<AuthController> {
                 ],
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Obx(() => GradientButton(
                   text: 'Получить код',
                   onPressed: () {                    
@@ -67,7 +67,7 @@ class RegistrationScreen extends GetView<AuthController> {
                   enabled: validator.navigationEnabled.value,
                 )),
             const SizedBox(height: 24),
-            Info(),
+            const InfoBox(),
           ],
         ),
       ),

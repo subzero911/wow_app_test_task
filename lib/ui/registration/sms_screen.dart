@@ -63,7 +63,7 @@ class SmsScreen extends GetView<AuthController> {
             ),
             const Spacer(),
             Obx(() => GradientButton(
-                  text: 'Получить код',
+                  text: 'Войти',
                   onPressed: () async {
                     await controller.register(validator.controller.text);
                     if (controller.status.value.isSuccess) {

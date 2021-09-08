@@ -8,10 +8,13 @@ import 'package:wow_app_test_task/ui/registration/validators/reg_validator.dart'
 import 'package:wow_app_test_task/utils/appcolors.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(

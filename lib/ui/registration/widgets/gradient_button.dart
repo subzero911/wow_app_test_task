@@ -40,14 +40,16 @@ class GradientButton extends StatelessWidget {
             width: double.infinity,
             height: 44,
             alignment: Alignment.center,
-            child: loading ? SizedBox(
-              width: 24,
-              height: 24,
-              child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2.5),
-            ) : Text(
-              text,
-              style: TextStyle(fontSize: 16),
-            ),
+            child: loading
+                ? const SizedBox(
+                    width: 24,
+                    height: 24,
+                    child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2.5),
+                  )
+                : Text(
+                    text,
+                    style: const TextStyle(fontSize: 16),
+                  ),
           ),
         ),
       ),

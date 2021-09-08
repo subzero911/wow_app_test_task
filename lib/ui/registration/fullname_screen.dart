@@ -25,7 +25,7 @@ class FullnameScreen extends StatelessWidget {
       body: SafeArea(
         child: Column(
           children: [
-            Header(
+            const Header(
               title: 'Укажите имя  и фамилию',
               subtitle: 'Добавьте информацию о себе, чтобы вас узнали клиенты',
             ),
@@ -42,7 +42,7 @@ class FullnameScreen extends StatelessWidget {
                 ),
               ),
             ),
-            Spacer(),
+            const Spacer(),
             Obx(() => GradientButton(
                   text: 'Далее',
                   onPressed: () {},
