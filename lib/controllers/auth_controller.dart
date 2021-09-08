@@ -7,7 +7,7 @@ class AuthController extends GetxController {
   AuthService auth;
   String phone = '';
   final loading = false.obs;
-  
+
   AuthController({
     required this.auth,
   });
@@ -23,9 +23,10 @@ class AuthController extends GetxController {
     }
   }
 
-  Future<void> register(String smsCode) async {
+  Future<bool> register(String smsCode) async {
     loading.toggle();
-    await auth.getTokens(phone, smsCode);
+    var result = await auth.getTokens(phone, smsCode);
     loading.toggle();
+    return result;
   }
 }

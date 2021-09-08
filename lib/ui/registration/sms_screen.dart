@@ -56,8 +56,11 @@ class SmsScreen extends StatelessWidget {
             Obx(() => GradientButton(
                   text: 'Получить код',
                   onPressed: () async {
-                    await Get.find<AuthController>().register(validator.controller.text);
-                    Get.offAllNamed('/reg/sms/ok');
+                    var ok = await Get.find<AuthController>().register(validator.controller.text);
+                    if (ok) {
+                      Get.offAllNamed('/reg/sms/ok');
+                    }
+                    // TODO else show error
                   },
                   enabled: validator.navigationEnabled.value,
                   loading: Get.find<AuthController>().loading.value,

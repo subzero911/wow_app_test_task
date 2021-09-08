@@ -20,7 +20,7 @@ class AuthService {
     }
   }
 
-  Future<void> getTokens(String phone, String smsCode) async {
+  Future<bool> getTokens(String phone, String smsCode) async {
     var response = await authProvider.getTokens(phone, smsCode);
     print('response:\n${response.body}');
     if (response.body?['status'] == 'OK') {
@@ -31,10 +31,10 @@ class AuthService {
 
       // TODO save it to Hive and add to http client
 
-      return;
-    } else if (response.body?['status'] == 'ERR') {
+      return true;
+    } else {
       print(response.body?['error']);
-      return;
+      return false;
     }
   }
 }
