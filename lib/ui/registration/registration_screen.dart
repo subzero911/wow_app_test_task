@@ -40,6 +40,7 @@ class RegistrationScreen extends StatelessWidget {
                   const SizedBox(width: 18),
                   Flexible(
                     child: TextFormField(
+                      autofocus: true,
                       controller: validator.controller,
                       onChanged: validator.updateText,
                       keyboardType: TextInputType.phone,

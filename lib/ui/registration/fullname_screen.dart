@@ -34,23 +34,20 @@ class FullnameScreen extends StatelessWidget {
               content: TextFormField(
                 controller: validator.controller,
                 onChanged: validator.updateText,
-                keyboardType: TextInputType.phone,
                 decoration: InputDecoration(
                   hintText: 'Анна Борзова',
                   hintStyle: Theme.of(context).textTheme.bodyText1,
                   border: InputBorder.none,
                   counter: const SizedBox.shrink(),
                 ),
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, letterSpacing: 2.0),
-                maxLength: 4,
               ),
             ),
             Spacer(),
-            GradientButton(
-              text: 'Далее',
-              onPressed: () {},
-              enabled: validator.navigationEnabled.value,
-            ),
+            Obx(() => GradientButton(
+                  text: 'Далее',
+                  onPressed: () {},
+                  enabled: validator.navigationEnabled.value,
+                )),
             const SizedBox(height: 24),
           ],
         ),
