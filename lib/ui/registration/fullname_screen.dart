@@ -1,21 +1,23 @@
 import 'package:flutter/material.dart' hide Title;
 import 'package:get/get.dart';
-import 'package:wow_app_test_task/controllers/auth_controller.dart';
-import 'package:wow_app_test_task/utils/appcolors.dart';
+
+import 'validators/reg_validator.dart';
 import 'widgets/gradient_button.dart';
 import 'widgets/header.dart';
 import 'widgets/input.dart';
 
-class OkScreen extends StatelessWidget {
-  const OkScreen({Key? key}) : super(key: key);
+class FullnameScreen extends StatelessWidget {
+  const FullnameScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final validator = Get.find<RegValidator>(tag: 'NAME');
+
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
-        shadowColor: Colors.transparent,        
+        shadowColor: Colors.transparent,
         actions: [
           Image.asset('assets/images/info.png'),
         ],
@@ -30,6 +32,8 @@ class OkScreen extends StatelessWidget {
             const SizedBox(height: 36),
             Input(
               content: TextFormField(
+                controller: validator.controller,
+                onChanged: validator.updateText,
                 keyboardType: TextInputType.phone,
                 decoration: InputDecoration(
                   hintText: 'Анна Борзова',
@@ -45,6 +49,7 @@ class OkScreen extends StatelessWidget {
             GradientButton(
               text: 'Далее',
               onPressed: () {},
+              enabled: validator.navigationEnabled.value,
             ),
             const SizedBox(height: 24),
           ],

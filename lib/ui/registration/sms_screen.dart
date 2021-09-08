@@ -7,7 +7,7 @@ import 'widgets/gradient_button.dart';
 import 'widgets/header.dart';
 import 'widgets/input.dart';
 
-class SmsScreen extends StatelessWidget {
+class SmsScreen extends GetView<AuthController> {
   const SmsScreen({Key? key}) : super(key: key);
 
   @override
@@ -56,14 +56,16 @@ class SmsScreen extends StatelessWidget {
             Obx(() => GradientButton(
                   text: 'Получить код',
                   onPressed: () async {
-                    var ok = await Get.find<AuthController>().register(validator.controller.text);
-                    if (ok) {
+                    await controller.register(validator.controller.text);
+                    if (controller.status.value.isSuccess) {
                       Get.offAllNamed('/reg/sms/ok');
+                    } else if (controller.status.value.isError) {
+                      // TODO show error message
+                      print('error: wrong code entered');
                     }
-                    // TODO else show error
                   },
                   enabled: validator.navigationEnabled.value,
-                  loading: Get.find<AuthController>().loading.value,
+                  loading: controller.status.value.isLoading,
                 )),
             const SizedBox(height: 24),
           ],

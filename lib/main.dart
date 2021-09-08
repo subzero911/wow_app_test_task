@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wow_app_test_task/global_bindings.dart';
-import 'package:wow_app_test_task/ui/registration/ok_screen.dart';
+import 'package:wow_app_test_task/ui/registration/fullname_screen.dart';
 import 'package:wow_app_test_task/ui/registration/registration_screen.dart';
 import 'package:wow_app_test_task/ui/registration/sms_screen.dart';
 import 'package:wow_app_test_task/ui/registration/validators/reg_validator.dart';
@@ -44,7 +44,8 @@ class MyApp extends StatelessWidget {
                 children: [
                   GetPage(
                     name: '/ok',
-                    page: () => OkScreen(),
+                    page: () => FullnameScreen(),
+                    binding: BindingsBuilder.put(() => RegValidator(), tag: 'NAME'),
                     transition: Transition.cupertino,
                   ),
                 ]),
