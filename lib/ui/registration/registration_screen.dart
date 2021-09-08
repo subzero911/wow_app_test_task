@@ -8,7 +8,7 @@ import 'widgets/header.dart';
 import 'widgets/info.dart';
 import 'widgets/input.dart';
 
-class RegistrationScreen extends StatelessWidget {
+class RegistrationScreen extends GetView<AuthController> {
   const RegistrationScreen({Key? key}) : super(key: key);
 
   @override
@@ -59,10 +59,9 @@ class RegistrationScreen extends StatelessWidget {
             Spacer(),
             Obx(() => GradientButton(
                   text: 'Получить код',
-                  onPressed: () {
-                    var auth = Get.find<AuthController>();
-                    auth.setPhone(validator.controller.text);
-                    auth.claimSms(); // unawaited
+                  onPressed: () {                    
+                    controller.setPhone(validator.controller.text);
+                    controller.claimSms(); // unawaited
                     Get.toNamed('/reg/sms?phone=${validator.controller.text}');
                   },
                   enabled: validator.navigationEnabled.value,

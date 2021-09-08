@@ -52,6 +52,7 @@ class SmsScreen extends GetView<AuthController> {
                 maxLength: 4,
               ),
             ),
+            // TODO добавить таймер
             Spacer(),
             Obx(() => GradientButton(
                   text: 'Получить код',

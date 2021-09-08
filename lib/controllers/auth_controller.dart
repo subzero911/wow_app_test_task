@@ -24,8 +24,7 @@ class AuthController extends GetxController {
   }
 
   Future<void> register(String smsCode) async {
-    status.value = RxStatus.loading();
-    await Future.delayed(Duration(seconds: 1));
+    status.value = RxStatus.loading();    
     var ok = await auth.getTokens(phone, smsCode);
     status.value = ok ? RxStatus.success() : RxStatus.error();
   }
