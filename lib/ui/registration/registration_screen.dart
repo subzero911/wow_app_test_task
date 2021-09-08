@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart' hide Title;
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:get/get.dart';
+import 'package:wow_app_test_task/ui/registration/validators/reg_validator.dart';
 import 'widgets/gradient_button.dart';
 import 'widgets/header.dart';
 import 'widgets/info.dart';
@@ -14,14 +15,7 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
-  final _controller = TextEditingController();
-  String _previousText = '';
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+  final validator = Get.find<RegValidator>();
 
   @override
   Widget build(BuildContext context) {
@@ -50,13 +44,8 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                   const SizedBox(width: 18),
                   Flexible(
                     child: TextFormField(
-                      controller: _controller,
-                      onChanged: (val) {
-                        // optimization: rebuild only if changed from 'empty' to 'not empty' and vice versa
-                        if (val.isNotEmpty && _previousText.isEmpty || val.isEmpty && _previousText.isNotEmpty)
-                          setState(() {});
-                        _previousText = val;
-                      },
+                      controller: validator.controller,
+                      onChanged: validator.updateText,
                       keyboardType: TextInputType.phone,
                       decoration: InputDecoration(
                         hintText: '+7 (___) ___ __ __',
@@ -71,11 +60,11 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               ),
             ),
             Spacer(),
-            GradientButton(
-              text: 'Получить код',
-              onPressed: () => Get.toNamed('/reg/sms?phone=${_controller.text}'),
-              enabled: _controller.text.isNotEmpty,
-            ),
+            Obx(() => GradientButton(
+                  text: 'Получить код',
+                  onPressed: () => Get.toNamed('/reg/sms?phone=${validator.controller.text}'),
+                  enabled: validator.navigationEnabled.value,
+                )),
             const SizedBox(height: 24),
             Info(),
           ],
