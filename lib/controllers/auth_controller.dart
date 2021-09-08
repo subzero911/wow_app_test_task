@@ -5,11 +5,12 @@ import 'package:wow_app_test_task/repository/auth_service.dart';
 
 class AuthController extends GetxController {
   AuthService auth;
+  String phone = '';
+  final loading = false.obs;
+  
   AuthController({
     required this.auth,
   });
-
-  String phone = '';
 
   // set on registration screen
   void setPhone(String rawPhone) {
@@ -17,12 +18,14 @@ class AuthController extends GetxController {
   }
 
   Future<void> claimSms() async {
-    if (phone.isNotEmpty) {      
+    if (phone.isNotEmpty) {
       await auth.claimSms(phone);
     }
   }
 
   Future<void> register(String smsCode) async {
+    loading.toggle();
     await auth.getTokens(phone, smsCode);
+    loading.toggle();
   }
 }

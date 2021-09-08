@@ -2,29 +2,20 @@ import 'package:flutter/material.dart' hide Title;
 import 'package:get/get.dart';
 import 'package:wow_app_test_task/controllers/auth_controller.dart';
 import 'package:wow_app_test_task/utils/appcolors.dart';
-import 'validators/reg_validator.dart';
 import 'widgets/gradient_button.dart';
 import 'widgets/header.dart';
 import 'widgets/input.dart';
 
-class SmsScreen extends StatelessWidget {
-  const SmsScreen({Key? key}) : super(key: key);
+class OkScreen extends StatelessWidget {
+  const OkScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final validator = Get.find<RegValidator>(tag: 'SMS');
-    final phone = Get.parameters['phone'];
-
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
-        shadowColor: Colors.transparent,
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back),
-          onPressed: () => Get.back(),
-          color: AppColors.inactive,
-        ),
+        shadowColor: Colors.transparent,        
         actions: [
           Image.asset('assets/images/info.png'),
         ],
@@ -33,17 +24,15 @@ class SmsScreen extends StatelessWidget {
         child: Column(
           children: [
             Header(
-              title: 'Введите код из СМС',
-              subtitle: 'На номер $phone отправлено СМС с проверочным кодом, введите его',
+              title: 'Укажите имя  и фамилию',
+              subtitle: 'Добавьте информацию о себе, чтобы вас узнали клиенты',
             ),
             const SizedBox(height: 36),
             Input(
               content: TextFormField(
-                controller: validator.controller,
-                onChanged: validator.updateText,
                 keyboardType: TextInputType.phone,
                 decoration: InputDecoration(
-                  hintText: '__ __ __ __',
+                  hintText: 'Анна Борзова',
                   hintStyle: Theme.of(context).textTheme.bodyText1,
                   border: InputBorder.none,
                   counter: const SizedBox.shrink(),
@@ -53,15 +42,10 @@ class SmsScreen extends StatelessWidget {
               ),
             ),
             Spacer(),
-            Obx(() => GradientButton(
-                  text: 'Получить код',
-                  onPressed: () async {
-                    await Get.find<AuthController>().register(validator.controller.text);
-                    Get.offAllNamed('/reg/sms/ok');
-                  },
-                  enabled: validator.navigationEnabled.value,
-                  loading: Get.find<AuthController>().loading.value,
-                )),
+            GradientButton(
+              text: 'Далее',
+              onPressed: () {},
+            ),
             const SizedBox(height: 24),
           ],
         ),

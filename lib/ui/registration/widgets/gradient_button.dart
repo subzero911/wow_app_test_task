@@ -5,11 +5,13 @@ class GradientButton extends StatelessWidget {
   final String text;
   final VoidCallback onPressed;
   final bool enabled;
+  final bool loading;
 
   const GradientButton({
     required this.onPressed,
     required this.text,
     this.enabled = true,
+    this.loading = false,
     Key? key,
   }) : super(key: key);
 
@@ -38,7 +40,11 @@ class GradientButton extends StatelessWidget {
             width: double.infinity,
             height: 44,
             alignment: Alignment.center,
-            child: Text(
+            child: loading ? SizedBox(
+              width: 24,
+              height: 24,
+              child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2.5),
+            ) : Text(
               text,
               style: TextStyle(fontSize: 16),
             ),
