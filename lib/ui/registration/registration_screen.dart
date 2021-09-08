@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart' hide Title;
 import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:get/get.dart';
+import 'package:wow_app_test_task/controllers/auth_controller.dart';
 import 'package:wow_app_test_task/ui/registration/validators/reg_validator.dart';
 import 'widgets/gradient_button.dart';
 import 'widgets/header.dart';
@@ -57,7 +58,12 @@ class RegistrationScreen extends StatelessWidget {
             Spacer(),
             Obx(() => GradientButton(
                   text: 'Получить код',
-                  onPressed: () => Get.toNamed('/reg/sms?phone=${validator.controller.text}'),
+                  onPressed: () {
+                    var auth = Get.find<AuthController>();
+                    auth.setPhone(validator.controller.text);
+                    auth.claimSms(); // unawaited
+                    Get.toNamed('/reg/sms?phone=${validator.controller.text}');
+                  },
                   enabled: validator.navigationEnabled.value,
                 )),
             const SizedBox(height: 24),

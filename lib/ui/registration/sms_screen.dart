@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart' hide Title;
 import 'package:get/get.dart';
+import 'package:wow_app_test_task/controllers/auth_controller.dart';
 import 'package:wow_app_test_task/utils/appcolors.dart';
 import 'validators/reg_validator.dart';
 import 'widgets/gradient_button.dart';
@@ -59,7 +60,9 @@ class _SmsScreenState extends State<SmsScreen> {
             Spacer(),
             Obx(() => GradientButton(
                   text: 'Получить код',
-                  onPressed: () {},
+                  onPressed: () {
+                    Get.find<AuthController>().register(validator.controller.text);
+                  },
                   enabled: validator.navigationEnabled.value,
                 )),
             const SizedBox(height: 24),
