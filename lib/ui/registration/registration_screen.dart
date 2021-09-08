@@ -7,18 +7,13 @@ import 'widgets/header.dart';
 import 'widgets/info.dart';
 import 'widgets/input.dart';
 
-class RegistrationScreen extends StatefulWidget {
+class RegistrationScreen extends StatelessWidget {
   const RegistrationScreen({Key? key}) : super(key: key);
 
   @override
-  _RegistrationScreenState createState() => _RegistrationScreenState();
-}
-
-class _RegistrationScreenState extends State<RegistrationScreen> {
-  final validator = Get.find<RegValidator>();
-
-  @override
   Widget build(BuildContext context) {
+    final validator = Get.find<RegValidator>(tag: 'REG');
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,

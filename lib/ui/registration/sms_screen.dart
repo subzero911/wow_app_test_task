@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart' hide Title;
-import 'package:flutter_multi_formatter/flutter_multi_formatter.dart';
 import 'package:get/get.dart';
 import 'package:wow_app_test_task/utils/appcolors.dart';
+import 'validators/reg_validator.dart';
 import 'widgets/gradient_button.dart';
 import 'widgets/header.dart';
-import 'widgets/info.dart';
 import 'widgets/input.dart';
 
 class SmsScreen extends StatefulWidget {
@@ -15,20 +14,13 @@ class SmsScreen extends StatefulWidget {
 }
 
 class _SmsScreenState extends State<SmsScreen> {
-  final _controller = TextEditingController();
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final validator = Get.find<RegValidator>(tag: 'SMS');
     final phone = Get.parameters['phone'];
 
     return Scaffold(
-      appBar: AppBar(        
+      appBar: AppBar(
         automaticallyImplyLeading: false,
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
@@ -51,10 +43,8 @@ class _SmsScreenState extends State<SmsScreen> {
             const SizedBox(height: 36),
             Input(
               content: TextFormField(
-                controller: _controller,
-                onChanged: (val) {
-                  setState(() {});
-                },
+                controller: validator.controller,
+                onChanged: validator.updateText,
                 keyboardType: TextInputType.phone,
                 decoration: InputDecoration(
                   hintText: '__ __ __ __',
@@ -67,12 +57,12 @@ class _SmsScreenState extends State<SmsScreen> {
               ),
             ),
             Spacer(),
-            GradientButton(
-              text: 'Получить код',
-              onPressed: () {},
-              enabled: _controller.text.isNotEmpty,
-            ),
-            const SizedBox(height: 24),            
+            Obx(() => GradientButton(
+                  text: 'Получить код',
+                  onPressed: () {},
+                  enabled: validator.navigationEnabled.value,
+                )),
+            const SizedBox(height: 24),
           ],
         ),
       ),

@@ -15,8 +15,7 @@ class RegValidator extends GetxController {
   void updateText(String val) {
     // optimization: rebuild only if changed from 'empty' to 'not empty' and vice versa
     if (val.isNotEmpty && _previousText.isEmpty || val.isEmpty && _previousText.isNotEmpty) {
-      navigationEnabled.toggle();
-      print('toggle; $navigationEnabled');
+      navigationEnabled.toggle();      
     }
     _previousText = val;
   }

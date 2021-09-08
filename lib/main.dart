@@ -31,12 +31,12 @@ class MyApp extends StatelessWidget {
         GetPage(
           name: '/reg',
           page: () => RegistrationScreen(),
-          binding: BindingsBuilder.put(() => RegValidator()),
+          binding: BindingsBuilder.put(() => RegValidator(), tag: 'REG'),
           children: [
             GetPage(
               name: '/sms',
               page: () => SmsScreen(),
-              binding: BindingsBuilder.put(() => RegValidator()),
+              binding: BindingsBuilder.put(() => RegValidator(), tag: 'SMS'),
               transition: Transition.cupertino,
             ),
             GetPage(
