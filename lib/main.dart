@@ -18,11 +18,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Wow App',
       theme: ThemeData(
-        colorScheme: ColorScheme.light().copyWith(
+        colorScheme: const ColorScheme.light().copyWith(
           primary: AppColors.darkOrange,
           primaryVariant: AppColors.lightOrange,
         ),
-        textTheme: TextTheme(
+        textTheme: const TextTheme(
           headline1: TextStyle(fontWeight: FontWeight.w500, fontSize: 20, color: AppColors.mainText),
           bodyText1: TextStyle(fontWeight: FontWeight.w400, fontSize: 14, color: AppColors.lightText),
           caption: TextStyle(fontWeight: FontWeight.w400, fontSize: 12, color: AppColors.mainText),
@@ -33,18 +33,18 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(
           name: '/reg',
-          page: () => RegistrationScreen(),
+          page: () => const RegistrationScreen(),
           binding: BindingsBuilder.put(() => RegValidator(), tag: 'REG'),
           children: [
             GetPage(
                 name: '/sms',
-                page: () => SmsScreen(),
+                page: () => const SmsScreen(),
                 binding: BindingsBuilder.put(() => RegValidator(), tag: 'SMS'),
                 transition: Transition.cupertino,
                 children: [
                   GetPage(
                     name: '/ok',
-                    page: () => FullnameScreen(),
+                    page: () => const FullnameScreen(),
                     binding: BindingsBuilder.put(() => RegValidator(), tag: 'NAME'),
                     transition: Transition.cupertino,
                   ),

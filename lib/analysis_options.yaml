@@ -1,0 +1,22 @@
+include: package:flutter_lints/flutter.yaml
+
+analyzer:
+  exclude:
+    - lib/generated/**
+    - lib/**/*.g.dart
+    - lib/main.reflectable.dart
+
+  # strong-mode:
+  #   implicit-dynamic: false
+  #   implicit-casts: false
+
+linter:
+  rules:
+    prefer_single_quotes: true
+    annotate_overrides: true
+    use_function_type_syntax: true    
+    # prefer_expression_function_bodies: false # consider
+    # avoid_catches_without_on_clauses: false
+    # lines_longer_than_80_chars: false
+    # public_member_api_docs: false
+    # prefer_mixin: false

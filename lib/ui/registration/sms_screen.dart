@@ -21,7 +21,7 @@ class SmsScreen extends GetView<AuthController> {
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () => Get.back(),
           color: AppColors.inactive,
         ),
@@ -31,6 +31,7 @@ class SmsScreen extends GetView<AuthController> {
       ),
       body: SafeArea(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Header(
               title: 'Введите код из СМС',
@@ -48,12 +49,19 @@ class SmsScreen extends GetView<AuthController> {
                   border: InputBorder.none,
                   counter: const SizedBox.shrink(),
                 ),
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, letterSpacing: 2.0),
+                style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold, letterSpacing: 2.0),
                 maxLength: 4,
               ),
             ),
-            // TODO добавить таймер
-            Spacer(),
+            Container(
+              constraints: const BoxConstraints(maxWidth: 260),
+              padding: const EdgeInsets.only(left: 20, top: 24),
+              child: Text(
+                'Не пришел код? Вы можете запросить его повторно через 01:00 мин',
+                style: Theme.of(context).textTheme.caption!.copyWith(color: AppColors.lightText),
+              ),
+            ),
+            const Spacer(),
             Obx(() => GradientButton(
                   text: 'Получить код',
                   onPressed: () async {
